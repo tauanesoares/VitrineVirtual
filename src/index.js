@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import Rotas from "./Rotas"
 
-ReactDOM.render(
-  <React.StrictMode>
-    <h1>React App</h1>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const contentor = document.getElementById("root")
+const origem = createRoot(contentor)
+
+origem.render(<Rotas/>)
