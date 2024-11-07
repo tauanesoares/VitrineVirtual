@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import styled from "styled-components";
 
 
@@ -32,14 +32,16 @@ export default function Principal(props){
        {
         props.produtos.map(function(produto, indice){
             return <Produto key={indice}>
-                        <ProdutoImagem
-                            src={produto.imagem}
-                            alt="Foto do produto"
-                        />
-                    <ProdutoDados>
-                        <div>{produto.modelo}</div>
-                        <div> R$ {produto.preco}</div>
-                    </ProdutoDados>
+                        <a href={"/produto/" + produto.codigo}>
+                            <ProdutoImagem
+                                src={produto.imagem}
+                                alt="Foto do produto"
+                            />
+                            <ProdutoDados>
+                                <div>{produto.modelo}</div>
+                                <div> R$ {produto.preco}</div>
+                            </ProdutoDados>
+                        </a>
                     </Produto>
         })
        }
