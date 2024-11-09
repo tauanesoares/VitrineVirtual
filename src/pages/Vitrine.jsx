@@ -6,7 +6,7 @@ import ProdutosExemplo from "../datas/ProdutosExemplo"
 export default function Vitrine(){
     return <>
         <Navegacao titulo="VITRINE">
-            <a href="/">Inicio</a>
+            <a href="/">Início</a>
             <a href="/promocao">Promoção</a> 
             <a href="carrinho">Carrinho</a>     
         </Navegacao> 
