@@ -4,14 +4,24 @@ import Janela from "../components/Janela"
 
 
 export default function Carrinho() {
-    const produtosCarrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    const [produtosCarrinhoo, setProdutosCarrinho] = useState(() => {
+        // Inicializa o estado a partir do localStorage
+        return JSON.parse(localStorage.getItem('carrinho')) || [];
+    });
 
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        const novoTotal = produtosCarrinho.reduce((total, produto) => total + produto.preco, 0);
+        // Calcula o total sempre que produtosCarrinhoo muda
+        const novoTotal = produtosCarrinhoo.reduce((total, produto) => total + produto.preco, 0);
         setTotal(novoTotal);
-      }, [produtosCarrinho]);
+    }, [produtosCarrinhoo]);
+
+    const excluirdoCarrinho = (produto) => {
+        const novosProdutos = produtosCarrinhoo.filter(item => item.codigo !== produto.codigo);
+        localStorage.setItem('carrinho', JSON.stringify(novosProdutos));
+        setProdutosCarrinho(novosProdutos);
+    };
 
     return <>
         <Navegacao titulo="VITRINE">
@@ -33,11 +43,16 @@ export default function Carrinho() {
                         <th>Modelo</th>
                         <th>Preço</th>
                     </tr>
-                {produtosCarrinho.map((produto, index) => (
+                {produtosCarrinhoo.map((produto, index) => (
                     <tr key={index}>
                         <td style={{ textAlign: 'center' }}> {produto.codigo} </td>
                         <td style={{ textAlign: 'center' }}> {produto.modelo} </td>
                         <td style={{ textAlign: 'center' }}> {produto.preco} </td>
+                        <td>
+                            <button onClick={() => excluirdoCarrinho(produto)}><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 30 30">
+<path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
+</svg></button>
+                        </td>
                     </tr>
                     ))}
                     <tr style={{ border: '1px solid #ccc' }}>
