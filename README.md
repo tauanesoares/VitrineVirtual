@@ -1,4 +1,4 @@
-# Vitrine Virtual
+# 🧥Vitrine Virtual
 
 Uma loja online simples criada com React para você explorar produtos e adicionar itens ao carrinho.
 Você pode visualizar o site neste link: https://vitrine-virtual-nine.vercel.app 
